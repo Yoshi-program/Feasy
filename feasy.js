@@ -1,15 +1,35 @@
-/*;<script
-  src="https://code.jquery.com/jquery-3.6.1.js"
-  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-  crossOrigin="anonymous"
-/>
-*/
-
 const feasy = {
   buttonAppend: (buttonPosition) => {
     $(buttonPosition).append(
-      '<input style="width: 10em; height:3em;" type="button" value="feasyから入力" width=500 height=100 id="modalBtn">'
+      '<input style="width: 10em; height:3em;" type="button" value="feasyから入力" width=500 height=100 id="modalBtn" class="modalBtn">'
     )
+    //$('#modalBtn').css('background-color', 'red')
+
+    $('.modalBtn').css({
+      display: 'inlineblock',
+      'background-color': '#0C88CA',
+      color: '#000',
+      width: '160px',
+      padding: '0.8em',
+      'text-decoration': 'none',
+      'border-radius': '4px',
+      'box-shadow':
+        '0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)',
+      '-webkit-tap-highlight-color': 'transparent',
+      transition: '.3s ease-out',
+    })
+    $('.modalBtn').hover(function () {
+      $(this).css({
+        cursor: 'pointer',
+        'text-decoration': 'none',
+        background: '#005691',
+        transform: 'translate3d(0, 4px, 0)',
+        transition: '.0s',
+        'border-bottom': 'none',
+      })
+    })
+    //cursor: pointer; text-decoration: none; background:#005691; transform: translate3d(0, 4px, 0); transition: .0s; border-bottom: none;
+
     $('#modalBtn').click(function () {
       $('#contents').append(
         '<section style="display: none; position: fixed; top:0;left:0;width:100%;height:100%;"id="modalArea" class="modalArea">\
@@ -18,63 +38,17 @@ const feasy = {
       )
     })
   },
-  modalPrep: () => {
-    window.addEventListener('message', (event) => {
-      if (event.origin !== 'https://yoshi-program.github.io') {
-        return
-      }
-      const getdata = event.data
-      if (getdata) {
-        switch (getdata.type) {
-          case 'loaded': {
-            first()
-            break
-          }
-          case 'storage': {
-            twice(getdata)
-            break
-          }
-        }
-      } else {
-        $('#modalArea').fadeOut()
-      }
+  on: (func) => {
+    window.addEventListener('message', (e) => {
+      func(e.data)
     })
   },
+  sendData: (demandData) => {
+    $('#childIframe')[0].contentWindow.postMessage(
+      demandData,
+      'https://yoshi-program.github.io/Feasy'
+    )
+    $('#modalArea').fadeIn()
+  },
 }
-
-function first() {
-  //const dataList = Object.keys(demandData)
-
-  $('#childIframe')[0].contentWindow.postMessage(dataList, 'https://yoshi-program.github.io/modal')
-  $('#modalArea').fadeIn()
-}
-
-function twice(getdata) {
-  console.log(getdata)
-  $('#modalArea').fadeOut()
-  for (let i = 0; i < length.dataList; i++) {
-    $(idData[i]).val(getdata[i].val)
-    break
-  }
-}
-
-//うちこませる
-
-/* eslint-disable*/
-const demandData = {
-  name_hurigana: 'moushikomiShimeiKn',
-  name_kanji: 'moushikomiShimeiKj',
-  email: 'moushikomiMail',
-  email: 'confirmMoushikomiMail',
-  tel1: 'moushikomiPhoneNo1',
-  tel2: 'moushikomiPhonNo2',
-  tel3: 'moushikomiPhoneNo3',
-}
-/* eslint-disable*/
-
-const dataList = Object.keys(demandData)
-console.log(dataList)
-const idData = Object.values(demandData)
-console.log(idData)
-
 window.feasy = feasy
