@@ -41,6 +41,7 @@ export const modalText: Base = {
   tax_2022_sign: '納税額(2022)',
   income_2022_sign: '収入(2022)',
   income_2022: '収入(2022)',
+
   before_one_zip_code1: '郵便番号前3桁（一つ前の住所）●●●-◯◯◯◯',
   before_one_zip_code2: '郵便番号後4桁（一つ前の住所）◯◯◯-●●●●',
   before_one_prefecture: '都道府県（一つ前の住所）',

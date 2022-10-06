@@ -39,6 +39,7 @@ export type Base = {
   tax_2022_sign?: string
   income_2022_sign?: string
   income_2022?: string
+
   before_one_zip_code1?: string
   before_one_zip_code2?: string
   before_one_prefecture?: string

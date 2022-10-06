@@ -13,7 +13,15 @@ const feasy = {
       color: '#ddffff',
       padding: '0,30',
       'border-color': '#99ccff #0099cc #0099cc #99ccff',
-      height: '48px',
+      // 自動車税用
+      'z-index': 2147483647,
+      'margin-left': '10px',
+      height: '2.0em',
+      // 'padding-right': '100px',
+      // 'margin-right': '700px',
+      // 'margin-bottom': '100px',
+      //----
+      //height: '48px',
       'font-weight': 'bold',
       'border-radius': '4px',
       //'box-shadow': '0 3px 5px 2px rgb(255 105 135 / 30%)',
