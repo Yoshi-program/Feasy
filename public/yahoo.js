@@ -34,9 +34,12 @@ const dataList = [
   'school_tel1',
   'school_tel2',
   'school_tel3',
+  'tel_landline1',
+  'tel_landline2',
+  'tel_landline3',
 ]
 
-feasy.buttonAppend('.mainFrame')
+feasy.buttonAppend('#yjMain > div > form > div > div > div.buttonMedium')
 feasy.on((getdata) => {
   if (getdata) {
     console.log(getdata)
@@ -69,9 +72,26 @@ feasy.on((getdata) => {
         $('#tel_b').val(getdata.school_tel1)
         $('#fax_b').val(getdata.school_tel2)
         $('#contact_b').val(getdata.school_tel3)
+        $('#fax_a').val(
+          getdata.val.tel_landline1 + getdata.val.tel_landline2 + getdata.val.tel_landline3
+        )
+        $('#contact_a').val(getdata.val.tel1 + getdata.val.tel2 + getdata.val.tel3)
         break
     }
   } else {
     feasy.fadeOutModal()
   }
 })
+
+/*
+山田
+太郎
+ヤマダ
+タロウ
+111
+2222
+東京都
+品川区
+草生える
+あは
+つかれた
